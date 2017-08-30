@@ -271,50 +271,57 @@ module.exports.createUser= function (newUser,callback){
 first off we have to have the following in the users.js route --this is the post function
 
 
-router.post('/login',
+
+
+         router.post('/login',
   passport.authenticate('local',{failureRedirect:'/users/login',failureFlash:'Invalid Username or Password'}),
  
- function(req, res) {
+         function(req, res) {
     // If this function gets called, authentication was successful.
   
-  // `req.user` contains the authenticated user.
+          // `req.user` contains the authenticated user.
     
-req.flash('success','You are now logged In');
+          req.flash('success','You are now logged In');
     
-res.redirect('/');
+          res.redirect('/');
   });
+
+
 
 Add passport and passport local strategy to the users.js route file copied from the app.js file
 
 and then you will have to have the following --which is the local strateegy 
 
-passport.use(new LocalStrategy(function(username,password,done){
- 
-////////////////
 
- User.getUserByUsername(username, function(err, user) {
+
+
+	passport.use(new LocalStrategy(function(username,password,done){
+ 
+	
+
+ 		User.getUserByUsername(username, function(err, user) {
       
-if(err) throw err;
+		if(err) throw err;
       if(!user) {
      
-   return done(null, false, {message: 'Unknown User'});
+   		return done(null, false, {message: 'Unknown User'});
      
- }
+ 		}
     
     
-User.comparePassword(password, user.password, function(err, isMatch) 
-{
+	User.comparePassword(password, user.password, function(err, isMatch) 
+		{
       if(err) return done(err);
       
-if(isMatch) {
+		if(isMatch) {
      
-   return done(null, user);
+   		return done(null, user);
     
-  } else {
+  		} else {
         return done(null, false, {message: 'Invalid password'});
      
 
- }
+		 }
     });
         });
 
@@ -322,32 +329,30 @@ if(isMatch) {
 }));
 
 
-put the serialize and deserialize user above the localstrategy
 
+
+put the serialize and deserialize user above the localstrategy
 and we have to create the functions in the model user.js
 
 
-module.exports.getUserById=function(id,callback){
-    User.findById(id,callback);
+		module.exports.getUserById=function(id,callback){
+    		User.findById(id,callback);
+		}
 
+		module.exports.getUserByUsername= function(username,callback){
+    		var query = { username:username};
+    		User.findOne(query,callback);
 }
 
-module.exports.getUserByUsername= function(username,callback){
-    var query = { username:username};
-    User.findOne(query,callback);
+		module.exports.comparePassword = function(candidatePassword,hash,callback){
+    		// Load hash from your password DB. 
+		bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
+    		// res === true 
+    		callback(null,isMatch);
 
+		});
 
-}
-
-module.exports.comparePassword = function(candidatePassword,hash,callback){
-    // Load hash from your password DB. 
-bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
-    // res === true 
-    callback(null,isMatch);
-
-});
-
-}
+		}
 
 
 
