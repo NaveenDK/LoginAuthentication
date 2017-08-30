@@ -129,7 +129,6 @@ var upload = multer({dest:'./uploads'}); //this line should be just under ------
 //And also below line should be added in the var require set of code
 var expressValidator= require('express-validator');```
 
------------------------------------------------------------------------------------------------------------------------------
 # PART 2 LAYOUT and VIEWS
 
 First We download bootstrap dist file and copy the js and css files seperately into the public folder and then we have to make the layout.jade file
