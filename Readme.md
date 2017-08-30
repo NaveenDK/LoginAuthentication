@@ -128,8 +128,8 @@ Special Notes--
 var upload = multer({dest:'./uploads'}); //this line should be just under ------var multer = require('multer');----
 
 //And also below line should be added in the var require set of code
-var expressValidator= require('express-validator');
-```
+var expressValidator= require('express-validator');```
+
 -----------------------------------------------------------------------------------------------------------------------------
 # PART 2 LAYOUT and VIEWS
 
