@@ -1,13 +1,13 @@
 # Login Authentication System Using NodeJS Tech QA Illustration
 
-# 1) What is the procedure you followed in setting up MongoDB as your database?
+### 1) What is the procedure you followed in setting up MongoDB as your database?
 
 After Downloading MongoDb ,navigate to where it is installed and once you are in the MOngodb->Server->3.4 you will see bin folder and other files 
 now you have to create a folder called Data and also and then a db folder inside it, and create a log folder in the same place as the bin folder
 Please note: The mongoDB folder should be in the C:\mongodb or else there will be error thrown for that as well which looks like 'invalid command folder etc..'
 
 
-# 2) After you set up the above what will be the next step ?
+### 2) After you set up the above what will be the next step ?
 Usually what we do is set the log path ,db path etc using cmd with administrative rights
 
 	Here are the steps
@@ -28,14 +28,14 @@ Usually what we do is set the log path ,db path etc using cmd with administrativ
 
 Please note: The mongoDB folder should be in the C:\mongodb or else there will be error thrown for that as well which looks like 'invalid command folder etc..'
 
-# 3) What are the middle ware needed for this write down all them in order you would implement?
+### 3) What are the middle ware needed for this write down all them in order you would implement?
  * install express by running:
 	npm install -g express
  * install express generator by running:
 	npm install -g express-generator
 And afterwards we have to create all express stuff by running the following command:
  *express
-# 4) what are the other dependencies you would have to type in manually in package.json generated
+### 4) what are the other dependencies you would have to type in manually in package.json generated
 mongodb -database
 mongoose -orm -interact with database
 connect-flash //ability to message eg: you are now logged in 
@@ -50,7 +50,7 @@ multer //allow uploading images
 Now we have to include stuff on the app,js file  we have to have 
 npm install express-session --save --we do this on cmd just so that we understand the both ways of adding modules to our project
 
-# 5) What other important lines of code has to be added in the app.js file inorder for the above modules to work ?
+### 5) What other important lines of code has to be added in the app.js file inorder for the above modules to work ?
 Require all of the above files as below:
 ```		var session = require('express-session');
 
@@ -136,10 +136,10 @@ var expressValidator= require('express-validator');
 First We download bootstrap dist file and copy the js and css files seperately into the public folder and then we have to make the layout.jade file
 a bit nice so that it can be extended from all the other view files
 
-# 1) What version of bootstrap are we supposed to use in this project?
+### 1) What version of bootstrap are we supposed to use in this project?
  We will go ahead using the old version of bootstrap.js and bootstrap.css files but afterwards we can migrate to the latest version of bootstrap
 
-# 2) Explain the Routing mechanism(architecture) followed in the node js project - in simple terms?
+### 2) Explain the Routing mechanism(architecture) followed in the node js project - in simple terms?
 we have index.js users.js in the routes folder and we call it in the app.js file as follows:
 
 
@@ -179,22 +179,22 @@ a(href='/users/logout') Logout
 
 
 
-# 3)After Views are set and they are working fine we take care of How the Registration Works using Requests How should we do it?
+### 3)After Views are set and they are working fine we take care of How the Registration Works using Requests How should we do it?
  navigate to the following file routes-->users.js you can see all the get requests has been written in a nice fashion while you understand what they are doing
 lets go and see how the post requests are used	---(side note: body parser helps to get variables out from the form -but bodyparser cannot handle pic uploads so thats why
 we need multer --so multer is needed on the users.js file) in the post request of the register function we add the third parameter so that the uploads will work fine
 
 
-# 4) How should the code of post request look like?
+### 4) How should the code of post request look like?
 router.post('/register', upload.single('profileimage') ,function(req, res, next) {
  console.log( req.body.name  )
 });
 
 
-# 5) How should the form validators work in the backend -illustrate with a code example?
+### 5) How should the form validators work in the backend -illustrate with a code example?
 req.checkBody('name','Name field is required').notEmpty(); //only the email validation will say something like .isEmail();
 
-# 4) what kind of code should be there in the register.jade in order to make the errors be responded by the users.js post request (mention at least 2 ways)
+### 4) what kind of code should be there in the register.jade in order to make the errors be responded by the users.js post request (mention at least 2 ways)
 
 ONE WAY
 ul.errors
@@ -207,14 +207,14 @@ ANOTHER WAY
     each error, i in errors
       div.alert.alert-danger #{error.msg}
 
-# 6) Creating MODELS using Mongoose
+### 6) Creating MODELS using Mongoose
 
 what we need to do when using mongoose
 -create modals
 -create schemas
 First thing we do is we create a models folder in the root and create a file named user.js and connect the mongoose module and the project 
 
-# 7) How can we make the register POST request work whhen the user clicks on the REGISTER BUTTON
+### 7) How can we make the register POST request work whhen the user clicks on the REGISTER BUTTON
 //var User =require('../models/user')--this is used in the below else loop to make it work !
 }else{
  
@@ -238,7 +238,7 @@ password:password,
 }
 
 
-# 8) What would you do to display a success message once the registration is done successfully 
+### 8) What would you do to display a success message once the registration is done successfully 
 
  req.flash('success ','You are not registered and can login');----------add this line before the end of the success loop and before the redirection code and
 //in the layout jade file add the following 
@@ -246,7 +246,7 @@ password:password,
 
 After this we should be able to see the SUccess register in green
 
-# 9) How to hash the password and not save as plain text
+### 9) How to hash the password and not save as plain text
 by doing npm install bcryptjs --save
 
 and then the following code should be in the user.js file which is under models
@@ -266,7 +266,7 @@ module.exports.createUser= function (newUser,callback){
 }
 
 
-# 10) What does Passport have to do with the Authentication process?
+### 10) What does Passport have to do with the Authentication process?
 
 first off we have to have the following in the users.js route --this is the post function
 
