@@ -67,9 +67,8 @@ Require all of the above files as below:
 		var mongoose= require('mongoose');
 
 		var db=mongoose.connection;
-```
 Afterwords we can do the following in seperate lines
-	```	
+	
 //Handle Sessions
 		
 app.use(session({
